@@ -12,6 +12,11 @@ function App() {
     ano: '',
   });
 
+  const [modeloInput, setModeloInput] = useState('');
+  const [montadoraInput, setMontadoraInput] = useState('');
+  const [anoInput, setAnoInput] = useState('');
+  const [placaInput, setPlacaInput] = useState('');
+
   useEffect(() => {
     fetchVeiculos();
   }, []);
@@ -75,37 +80,41 @@ function App() {
   
       {/* Formulário de adição de veículo */}
       <form onSubmit={handleSubmit}>
+
         {/* Campo para a placa */}
         <input
           type="text"
-          name="placa"
+          name="placaInput"
           placeholder="Placa"
-          value={novoVeiculo.placa}
-          onChange={handleInputChange}
+          value={placaInput}
+          onChange={(event) => setPlacaInput(event.target.value)}
         />
+
         {/* Campo para a montadora */}
         <input
           type="text"
-          name="montadora"
+          name="montadoraInput"
           placeholder="Montadora"
-          value={novoVeiculo.montadora}
-          onChange={handleInputChange}
+          value={montadoraInput}
+          onChange={(event) => setMontadoraInput(event.target.value)}
         />
+
         {/* Campo para o modelo */}
         <input
           type="text"
-          name="modelo"
+          name="modeloInput"
           placeholder="Modelo"
-          value={novoVeiculo.modelo}
-          onChange={handleInputChange}
+          value={modeloInput}
+          onChange={(event) => setModeloInput(event.target.value)}
         />
+
         {/* Campo para o ano */}
         <input
           type="number"
-          name="ano"
+          name="anoInput"
           placeholder="Ano"
-          value={novoVeiculo.ano}
-          onChange={handleInputChange}
+          value={anoInput}
+          onChange={(event) => setAnoInput(event.target.value)}
         />
         {/* Botão de envio do formulário */}
         <button id='adc' type="submit">Adicionar Veículo</button>
@@ -128,9 +137,9 @@ function App() {
               onClick={() =>
                 handleUpdate(veiculo.id, {
                   ...veiculo,
-                  modelo: novoVeiculo.modelo, // Exemplo de atualização
-                  montadora: novoVeiculo.montadora, // Exemplo de atualização
-                  ano: novoVeiculo.ano, // Exemplo de atualização
+                  modelo: modeloInput, // Exemplo de modelo
+                  montadora: montadoraInput, // Exemplo de montadora
+                  ano: anoInput, // Exemplo de ano
                 })
               }
             >
